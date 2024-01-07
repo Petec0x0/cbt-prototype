@@ -409,7 +409,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <div class="form-group">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-users"></i></span>
+                                <span class="input-group-text"><i class="fa fa-list-alt"></i></span>
                             </div>
                             <select class="custom-select <?php echo (!empty($team_err)) ? 'is-invalid' : ''; ?>"
                                 name="team">

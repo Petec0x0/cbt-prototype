@@ -17,7 +17,7 @@ $setting = mysqli_fetch_assoc($query);
 
 $username=$_SESSION['username'];
 $name=$_SESSION['nama'];
-$team=$_SESSION['team'];
+$exam_name=$_SESSION['exam_name'];
 
 
 $_SESSION['hours'] = 1;
@@ -125,7 +125,7 @@ $timeout_remaining = $remaining / 1000;
   <div class="card">
     
     <div class="card-header bg-primary text-white">
-      <i class="fa fa-user"></i> <?php echo $name." (".$team.")" ;?>
+      <i class="fa fa-user"></i> <?php echo $name." (".$exam_name.")" ;?>
       <span id="timeleft" style="float:right;" class="d-inline"><i class="fa fa-clock-o"></i> Remaining time: <span id="timer" class="d-inline">
       </span>
     </span>
@@ -159,8 +159,8 @@ $timeout_remaining = $remaining / 1000;
           <?php
           $question_per_page = 1;
           $question_limit = $setting['total_question'];
-          
-          $row = mysqli_query( $link, "select id_question, question_name, question_image, option1, option2, option3, option4, answer from tb_question ORDER BY RAND() LIMIT $question_limit");
+          $selected_exam = $_SESSION['exam_id'];
+          $row = mysqli_query( $link, "select id_question, question_name, question_image, option1, option2, option3, option4, answer from tb_question WHERE group_id = $selected_exam ORDER BY RAND() LIMIT $question_limit");
           $rowcount = mysqli_num_rows( $row );
           $remainder = $rowcount/$question_per_page;
           $i = 0;
