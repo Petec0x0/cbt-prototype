@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Aug 07, 2023 at 02:18 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- Host: 127.0.0.1
+-- Generation Time: Jan 07, 2024 at 04:50 PM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -100,7 +100,8 @@ INSERT INTO `tb_question` (`id_question`, `question_name`, `question_image`, `op
 (17, 'One of these does not explain the stage of the computer except?', '', 'Output - data - information', 'Input - processing - output', 'Processing - input - output', 'None of the above', 2, 14),
 (18, 'The computer program to compute the Bernoulli sequence on the Analytical Engine was written by _____', '', 'John Atanasoff', 'Grace Hopper', 'Charles babbage', 'Ada lovelace', 3, 14),
 (19, 'In what year did Blaise Pascal invent the first mechanical calculator?', '', '1942', '1642', '1756', '1655', 2, 14),
-(20, 'Computer processing speeds are measured in _____', 'img/Screenshot from 2023-08-07 01-03-57.png', 'Kilograms', 'Kilohertz', 'Kilobytes', 'Kilometers', 2, 14);
+(20, 'Computer processing speeds are measured in _____', 'img/Screenshot from 2023-08-07 01-03-57.png', 'Kilograms', 'Kilohertz', 'Kilobytes', 'Kilometers', 2, 14),
+(21, 'Extract the first line (as this contains the headers) and store this as a variable. Take note of\r\nthe type of this line, compared to our lines from the raw file reading earlier in the workshop.\r\nWhat do you notice?', '', 'AA', 'BB', 'CC', 'DD', 2, 15);
 
 -- --------------------------------------------------------
 
@@ -114,15 +115,21 @@ CREATE TABLE `tb_result` (
   `answer_right` int(11) NOT NULL,
   `answer_wrong` int(11) NOT NULL,
   `answer_empty` int(11) NOT NULL,
-  `score` int(11) NOT NULL
+  `score` int(11) NOT NULL,
+  `exam_id` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tb_result`
 --
 
-INSERT INTO `tb_result` (`id`, `username`, `answer_right`, `answer_wrong`, `answer_empty`, `score`) VALUES
-(2, 'GWF071423762', 4, 3, 2, 4);
+INSERT INTO `tb_result` (`id`, `username`, `answer_right`, `answer_wrong`, `answer_empty`, `score`, `exam_id`) VALUES
+(2, 'GWF071423762', 4, 3, 2, 4, 14),
+(3, '0x0', 0, 1, 8, 0, 15),
+(4, '0x0', 0, 0, 9, 0, 14),
+(5, '0x0', 1, 0, 0, 1, 0),
+(6, '0x0', 1, 0, 0, 1, 0),
+(7, '0x0', 1, 0, 0, 1, 15);
 
 -- --------------------------------------------------------
 
@@ -165,7 +172,8 @@ CREATE TABLE `tb_team` (
 --
 
 INSERT INTO `tb_team` (`id_team`, `name_team`, `creator_id`, `created_at`) VALUES
-(14, 'CSC 101 2017', 0, '2023-08-04 01:18:37');
+(14, 'CSC 101 2017', 0, '2023-08-04 01:18:37'),
+(15, 'CETM50 Technology Management', 0, '2024-01-06 21:37:01');
 
 -- --------------------------------------------------------
 
@@ -186,6 +194,7 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`username`, `nama`, `password`, `team`, `done`) VALUES
+('0x0', 'Mercy Joy', '$2y$10$LdWbzx7z4PBLC4DzXpN/S.X1/10EHmbTrU/jQSHityuImO3EZ.qYO', 14, 1),
 ('GWF071423762', 'Wence', '$2y$10$alUYOkAjR9vICxyCWKPbE.eI3jCj4xhsT2AWDGoL.RdvoEfApcihK', 14, 1);
 
 --
@@ -259,19 +268,19 @@ ALTER TABLE `tb_log`
 -- AUTO_INCREMENT for table `tb_question`
 --
 ALTER TABLE `tb_question`
-  MODIFY `id_question` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_question` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `tb_result`
 --
 ALTER TABLE `tb_result`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tb_team`
 --
 ALTER TABLE `tb_team`
-  MODIFY `id_team` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_team` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
